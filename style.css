@@ -1,28 +1,36 @@
 * {
-  font-family: fantasy;
-}
-body {
-  margin: 0;
   padding: 0;
-  background: #333;
-  color: snow;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: url("./img/bg.png");
   text-align: center;
+  padding: 5rem;
 }
 
-.menor {
-  color: rgb(129, 87, 80);
-}
-
-.mayor {
-  color: limegreen;
-}
-
-button {
-  margin: 0 20px;
-  padding: 15px;
-  font-size: 20px;
-  font-weight: 300;
-  background: cornflowerblue;
-  color: white;
+.operation {
+  background-color: rgb(89, 42, 165);
   border: none;
+  border-radius: 1rem;
+  color: azure;
+  font-size: 4rem;
+  margin: 1rem;
+  box-shadow: 0 0.2rem 2rem 0.2rem rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+}
+.op1 {
+  padding: 2% 6%;
+}
+.op2 {
+  padding: 2% 7%;
+}
+.menor {
+  color: red;
+}
+.mayor {
+  color: greenyellow;
 }

@@ -7,9 +7,9 @@ const CACHE_ELEMENTS = [
   "./components/Contador.js",
   "./index.js",
 ];
-//NOMBRE DE LA CACHE
+
 const CACHE_NAME = "v3_cache_contador_react";
-//INSTALA EL CACHE DEL SERVICE WORKER
+
 self.addEventListener("install", (e) => {
   e.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
@@ -22,12 +22,9 @@ self.addEventListener("install", (e) => {
     })
   );
 });
-//DE ENCARGA DE ACTIVAR EL CACHE Y
-// DE VALIDAR SI LOS CACHES INSTALADOS SON EL MISMO, SI NO ES ASÍ VA A BORRAR LA VERSION ANTIGUA
-self.addEventListener("activate", (e) => {
-  // self es lo mismo que escribir "const self = this"
-  const cacheWhitelist = [CACHE_NAME];
 
+self.addEventListener("activate", (e) => {
+  const cacheWhiteList = [CACHE_NAME];
   e.waitUntil(
     caches
       .keys()
@@ -35,7 +32,7 @@ self.addEventListener("activate", (e) => {
         return Promise.all(
           cacheNames.map((cacheName) => {
             return (
-              cacheWhitelist.indexOf(cacheName) === -1 &&
+              cacheWhiteList.indexOf(cacheName) === -1 &&
               caches.delete(cacheName)
             );
           })
@@ -45,17 +42,8 @@ self.addEventListener("activate", (e) => {
   );
 });
 
-//Haces match con un respondWith, si es que NO existe la info de las rutas de la CACHE
-// se vuelve a obtener
 self.addEventListener("fetch", (e) => {
   e.respondWith(
-    caches.match(e.request).then((res) => {
-      if (res) {
-        return res;
-      }
-      return fetch(e.request);
-    })
-  ); //se hace una promesa y si el resultado se obtiene igual no pasa nada, pero si no se obtiene de internet
+    caches.match(e.request).then((res) => (res ? res : fetch(e.request)))
+  );
 });
-
-//el fetch se ejecuta cada que se ejecuta una petición

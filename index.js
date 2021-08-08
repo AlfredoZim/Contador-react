@@ -1,1 +1,1 @@
-ReactDOM.render(<Contador />, document.querySelector("#root"));
+ReactDOM.render(<Contador/>,document.getElementById('root'))
